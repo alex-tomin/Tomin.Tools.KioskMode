@@ -3,10 +3,10 @@
 #   Do NOT TOUCH this section!  
 #------------------------------------
 Set-Location $PSScriptRoot
-Add-Type -Path Ciklum.ManageWindows.dll
+Add-Type -Path Tomin.Tools.KioskMode.dll
 
-$WinAPI = [Ciklum.ManageWindows.WinApi]
-$Helpers = [Ciklum.ManageWindows.Helper]
+$WinAPI = [Tomin.Tools.KioskMode.WinApi]
+$Helpers = [Tomin.Tools.KioskMode.Helper]
 
 # todo: optimize to avoid endless loop;
 function Wait-ForProcess($procName, $procTitle)
@@ -37,7 +37,7 @@ function Chrome-Kiosk($Url, $MonitorNum)
 
     $window = (Get-Process -Name chrome | where MainWindowHandle -ne ([IntPtr]::Zero) | select -First 1).MainWindowHandle
 
-    $WinAPI::ShowWindow($window, [Ciklum.ManageWindows.Enums.ShowWindowCommands]::Restore)
+    $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Restore)
     $Helpers::MoveToMonitor($window, $MonitorNum)
     $Helpers::SendKey($window, '{F11}')
     Start-Sleep -Seconds 3
@@ -51,7 +51,7 @@ function Cockpit-Start($MonitorNum)
     #main window
     $window = (Wait-ForProcess Ciklum.Cockpit.CommunicationSpace 'COCKPIT COMMUNICATION SPACE' | select -First 1).MainWindowHandle
     
-    $WinAPI::ShowWindow($window, [Ciklum.ManageWindows.Enums.ShowWindowCommands]::Restore)
+    $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Restore)
     $Helpers::MoveToMonitor($window, $MonitorNum)
-    $WinAPI::ShowWindow($window, [Ciklum.ManageWindows.Enums.ShowWindowCommands]::Maximize)
+    $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Maximize)
 }
