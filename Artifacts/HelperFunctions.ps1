@@ -8,10 +8,7 @@ Add-Type -Path Tomin.Tools.KioskMode.dll
 $WinAPI = [Tomin.Tools.KioskMode.WinApi]
 $Helpers = [Tomin.Tools.KioskMode.Helper]
 
-if (!$ChromeStartDelay) {$ChromeStartDelay = 3}
-if (!$chromePath) {$chromePath = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'}
-if (!$chromeArguments) {$chromeArguments = '--new-window --incognito'}
-
+# todo: optimize to avoid endless loop;
 function Wait-ForProcess($procName, $procTitle)
 {
     $sw = [Diagnostics.Stopwatch]::StartNew()
@@ -36,14 +33,15 @@ function Chrome-Kiosk($Url, $MonitorNum)
 {
     Write-Output "starting chrome $Url , monitor: $MonitorNum"
     Start-Process $chromePath "$chromeArguments $Url"
-    Start-Sleep -Seconds $ChromeStartDelay
+    Start-Sleep -Seconds 5
 
     $window = (Get-Process -Name chrome | where MainWindowHandle -ne ([IntPtr]::Zero) | select -First 1).MainWindowHandle
 
     $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Restore)
     $Helpers::MoveToMonitor($window, $MonitorNum)
     $Helpers::SendKey($window, '{F11}')
-    Start-Sleep -Seconds $ChromeStartDelay
+    Start-Sleep -Seconds 3
+
 }
 
 function Cockpit-Start($MonitorNum)
