@@ -8,7 +8,7 @@ It allows you to:
 # Steps
 
 ## 1. Download and Extract
-Download the latest realease and extract contents to C:\Kiosk-Mode. 
+Download the latest release and extract contents to C:\Kiosk-Mode. 
   You may put into another folder – but ensure you renamed path in all places.
 ## 2. Modify Ciklum-Kiosk.ps1
   Put necessary URLs and Monitor Numbers (starting from 1)
@@ -19,11 +19,11 @@ Run PowerShell as Administrator and execute the following, confirm when prompted
 ```
 ## 4. Launch Shortcut
 Double click on link (Start – Kios – modifypath.lnk) to ensure browsers are started and opened on necessary displays.
-**Note**: youi may need to modify your link if you put file not into C:\Kiosk-Mode. Right click on it -> properties and fill it accordingly.
+**Note**: you may need to modify your link if you put file not into C:\Kiosk-Mode. Right click on it -> properties and fill it accordingly.
 ## 5. Autostart.
 Copy the link/shortcut to desktop for easy access and to your startup folder.
 
-##Truobleshooting
+##Troubleshooting
 
 If window is not moved to another desktop – try increasing the delay in script ($ChromeStartDelay) variable.
 

@@ -38,22 +38,10 @@ function Chrome-Kiosk($Url, $MonitorNum)
     Start-Process $chromePath "$chromeArguments $Url"
     Start-Sleep -Seconds $ChromeStartDelay
 
-    $window = (Get-Process -Name chrome | where MainWindowHandle -ne ([IntPtr]::Zero) | select -First 1).MainWindowHandle
+    $window = (Get-Process -Name chrome | where {$_.MainWindowHandle -ne ([IntPtr]::Zero)} | select -First 1).MainWindowHandle
 
     $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Restore)
     $Helpers::MoveToMonitor($window, $MonitorNum)
     $Helpers::SendKey($window, '{F11}')
     Start-Sleep -Seconds $ChromeStartDelay
-}
-
-function Cockpit-Start($MonitorNum)
-{
-    Start-Process $cockpitPath
-
-    #main window
-    $window = (Wait-ForProcess Ciklum.Cockpit.CommunicationSpace 'COCKPIT COMMUNICATION SPACE' | select -First 1).MainWindowHandle
-    
-    $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Restore)
-    $Helpers::MoveToMonitor($window, $MonitorNum)
-    $WinAPI::ShowWindow($window, [Tomin.Tools.KioskMode.Enums.ShowWindowCommands]::Maximize)
 }
