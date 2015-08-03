@@ -8,7 +8,7 @@
 
 $chromePath = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
 $chromeArguments = '--new-window --incognito'
-# if Window not moved (especially on machine start) - try increaing the delay. 
+# if Window not moved (especially on machine start) - try increasing the delay. 
 $ChromeStartDelay = 3
 
 Set-Location $PSScriptRoot
