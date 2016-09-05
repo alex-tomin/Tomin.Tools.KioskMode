@@ -17,5 +17,5 @@ Set-Location $PSScriptRoot
 # Kill all running instances
 # &taskkill /im chrome* /F
 
-Chrome-Kiosk 'http://google.com' -MonitorNum 1 
-Chrome-Kiosk 'http://http://www.bbc.com/' -MonitorNum 2
+Chrome-Kiosk 'https://google.com' -MonitorNum 1 
+Chrome-Kiosk 'http://www.bbc.com/' -MonitorNum 2
