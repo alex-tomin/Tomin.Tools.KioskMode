@@ -44,7 +44,7 @@ e.g. from [Another Stack Overflow Answer](https://stackoverflow.com/questions/13
 Download the latest release and extract contents to C:\Kiosk-Mode.
 You may put into another folder – but ensure you renamed path in all places.
 
-## 2. Modify Start-Kiosk.ps1
+## 2. Modify Kiosk.ps1
 
 Put necessary URLs and Monitor Numbers (starting from 1)
 
@@ -67,7 +67,7 @@ Copy the link/shortcut to desktop for easy access and to your startup folder.
 
 ##Troubleshooting
 
-If window is not moved to another desktop – try increasing the delay in script (add `StartDelay` parameter).
+If window is not moved to another desktop – try increasing the delay in script (add `-StartDelay` parameter to commands).
 
 Script has been tested on Windows 10 machine.
 
